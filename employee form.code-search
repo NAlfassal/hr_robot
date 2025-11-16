@@ -1,0 +1,96 @@
+# Query: employee form
+
+53 results - 11 files
+
+f_send.robot:
+  1  *** Settings ***
+  2: Documentation     A collection of atomic tasks for the employee_form automation.
+  3  ...               This robot is designed to be controlled by an external scheduler
+
+log.html:
+  2082  <script type="text/javascript">
+  2083: window.output["strings"] = window.output["strings"].concat(["*","*F Send","*D:\\employee_form\\f_send.robot","*f_send.robot","*<p>A collection of atomic tasks for the employee_form automation. This robot is designed to be controlled by an external scheduler (e.g., smart_runner.py) which handles all timing and logic.\x3c/p>","*Generate And Send Final Report","*<p>Task to process data, send the final report, and reset the file.\x3c/p>","*Copy Send And Reset Monthly Data","*<p>Manages the end-of-month process: process, copy, send, and clean.\x3c/p>","*Log To Console","*BuiltIn","*<p>Logs the given message to the console.\x3c/p>","*Starting Data Processing (Clean &amp; Highlight Duplicates)...","*Catenate","*<p>Catenates the given items together and returns the resulted string.\x3c/p>","*SEPARATOR=    \"${PYTHON_EXE}\" \"${PROCESSOR_SCRIPT}\" \"${RESPONSES_FILE}\" 2&gt;&amp;1","*${PROCESS_COMMAND}","*${PROCESS_COMMAND} = \"D:\\employee_form\\venv\\Scripts\\python.exe\" \"D:\\employee_form\\report_processor.py\" \"D:\\employee_form\\data\\responses.xlsx\" 2&gt;&amp;1","*Run","*OperatingSystem","*<p>Runs the given command in the system and returns the output.\x3c/p>","*${PROCESSOR_RESULT}","*Running command '\"D:\\employee_form\\venv\\Scripts\\python.exe\" \"D:\\employee_form\\report_processor.py\" \"D:\\employee_form\\data\\responses.xlsx\" 2&gt;&amp;1'.","*${PROCESSOR_RESULT} = Starting data cleaning and duplicate highlighting...\nNo duplicates found.","*Processor Script Output: ${PROCESSOR_RESULT}","*Run Keyword And Return Status","*<p>Runs the given keyword with given arguments and returns the status as a Boolean value.\x3c/p>","*Should Contain    ${PROCESSOR_RESULT}    ERROR    ignore_case=True","*${error_found_in_processor}","*Should Contain","*<p>Fails if <code>container\x3c/code> does not contain <code>item\x3c/code> one or more times.\x3c/p>","*${PROCESSOR_RESULT}    ERROR    ignore_case=True","*'Starting data cleaning and duplicate highlighting...\nNo duplicates found.' does not contain 'error'","*${error_found_in_processor} = False","*Fail","*<p>Fails the test with the given message and optionally alters its tags.\x3c/p>","*Data Processor Failed: ${PROCESSOR_RESULT}","*Get Current Date","*DateTime","*<p>Returns current local or UTC time with an optional increment.\x3c/p>","*result_format=%Y-%m-%d_%H%M%S","*${CURRENT_DATE}","*${CURRENT_DATE} = 2025-11-16_092750","*Set Variable","*<p>Returns the given values which can then be assigned to a variables.\x3c/p>","*temp_responses_${CURRENT_DATE}.xlsx","*${TEMP_FILENAME}","*${TEMP_FILENAME} = temp_responses_2025-11-16_092750.xlsx","*D:\\\\employee_form${/}${TEMP_FILENAME}","*${TEMP_COPY_PATH}","*${TEMP_COPY_PATH} = D:\\employee_form\\temp_responses_2025-11-16_092750.xlsx","*Creating temporary copy of the PROCESSED file...","*Copy File","*<p>Copies the source file into the destination.\x3c/p>","*${RESPONSES_FILE}    ${TEMP_COPY_PATH}","eNpzzi/ITE1RSMvMSVVIK8rPVVC3SVTIKEpNs1UCiVnp67tYxaTmFuTkV6YCVeQX5cakJJYkxhSlFhfk5xWnFutV5BRXKNkRo8pGP9FOXaEknwg7SoDceLjueCMDI1NdQ0NdQ7N4A0sjc1MDXLYSpQ/sDj0AT/lVuA==","*Send Report To HR","*<p>Sends the processed Excel file as an attachment to HR.\x3c/p>","*Authorize Gmail","*<p>Authorizes the connection to the Gmail SMTP server.\x3c/p>","*Authorize","*RPA.Email.ImapSmtp","*<p>Authorize user to SMTP and IMAP servers.\x3c/p>","*account=${GMAIL_USER}    password=${GMAIL_PASS}    smtp_server=${SMTP_SERVER}    smtp_port=${SMTP_PORT}","*s1-t1-k1-k12-k1-k1","*Server address, account and password are needed for authentication with IMAP","*Not able to establish IMAP connection","*Successfully logged into Gmail ✅","*Sending monthly report to HR...","*Send Message","*<p>Send SMTP ⟪ 587 characters skipped ⟫ deleted.","*Starting final file reset (clearing content)...","*SEPARATOR=    \"${PYTHON_EXE}\" \"${CLEANER_SCRIPT}\" \"${RESPONSES_FILE}\" 2&gt;&amp;1","*${CLEAN_COMMAND}","*${CLEAN_COMMAND} = \"D:\\employee_form\\venv\\Scripts\\python.exe\" \"D:\\employee_form\\excel_cleaner.py\" \"D:\\employee_form\\data\\responses.xlsx\" 2&gt;&amp;1","*${CLEANER_RESULT}","*Running command '\"D:\\employee_form\\venv\\Scripts\\python.exe\" \"D:\\employee_form\\excel_cleaner.py\" \"D:\\employee_form\\data\\responses.xlsx\" 2&gt;&amp;1'.","*${CLEANER_RESULT} = Success: File reset completed for D:\\employee_form\\data\\responses.xlsx.","*Cleaner Script Output: ${CLEANER_RESULT}","*Should Contain    ${CLEANER_RESULT}    ERROR    ignore_case=True","*${error_found_in_cleaner}","*${CLEANER_RESULT}    ERROR    ignore_case=True","*'Success: File reset completed for D:\\employee_form\\data\\responses.xlsx.' does not contain 'error'","*${error_found_in_cleaner} = False","*Excel Cleaner Failed: ${CLEANER_RESULT}","*✅ Original responses file reset successfully."]);
+  2084  </script>
+
+output.xml:
+    2  <robot generator="Robot 7.3.2 (Python 3.10.11 on win32)" generated="2025-11-16T09:27:49.383667" rpa="true" schemaversion="5">
+    3: <suite id="s1" name="F Send" source="D:\employee_form\f_send.robot">
+    4  <test id="s1-t1" name="Generate And Send Final Report" line="41">
+
+   11  <kw name="Catenate" owner="BuiltIn">
+   12: <msg time="2025-11-16T09:27:49.617402" level="INFO">${PROCESS_COMMAND} = "D:\employee_form\venv\Scripts\python.exe" "D:\employee_form\report_processor.py" "D:\employee_form\data\responses.xlsx" 2&gt;&amp;1</msg>
+   13  <var>${PROCESS_COMMAND}</var>
+
+   19  <kw name="Run" owner="OperatingSystem">
+   20: <msg time="2025-11-16T09:27:49.617402" level="INFO">Running command '"D:\employee_form\venv\Scripts\python.exe" "D:\employee_form\report_processor.py" "D:\employee_form\data\responses.xlsx" 2&gt;&amp;1'.</msg>
+   21  <msg time="2025-11-16T09:27:50.299130" level="INFO">${PROCESSOR_RESULT} = Starting data cleaning and duplicate highlighting...
+
+   78  <kw name="Set Variable" owner="BuiltIn">
+   79: <msg time="2025-11-16T09:27:50.301213" level="INFO">${TEMP_COPY_PATH} = D:\employee_form\temp_responses_2025-11-16_092750.xlsx</msg>
+   80  <var>${TEMP_COPY_PATH}</var>
+   81: <arg>D:\\employee_form${/}${TEMP_FILENAME}</arg>
+   82  <doc>Returns the given values which can then be assigned to a variables.</doc>
+
+   90  <kw name="Copy File" owner="OperatingSystem">
+   91: <msg time="2025-11-16T09:27:50.301213" level="INFO" html="true">Copied file from '&lt;a href="file://D:\employee_form\data\responses.xlsx"&gt;D:\employee_form\data\responses.xlsx&lt;/a&gt;' to '&lt;a href="file://D:\employee_form\temp_responses_2025-11-16_092750.xlsx"&gt;D:\employee_form\temp_responses_2025-11-16_092750.xlsx&lt;/a&gt;'.</msg>
+   92  <arg>${RESPONSES_FILE}</arg>
+
+  141  <kw name="Remove File" owner="OperatingSystem">
+  142: <msg time="2025-11-16T09:27:53.123496" level="INFO" html="true">Removed file '&lt;a href="file://D:\employee_form\temp_responses_2025-11-16_092750.xlsx"&gt;D:\employee_form\temp_responses_2025-11-16_092750.xlsx&lt;/a&gt;'.</msg>
+  143  <arg>${TEMP_COPY_PATH}</arg>
+
+  157  <kw name="Catenate" owner="BuiltIn">
+  158: <msg time="2025-11-16T09:27:53.140655" level="INFO">${CLEAN_COMMAND} = "D:\employee_form\venv\Scripts\python.exe" "D:\employee_form\excel_cleaner.py" "D:\employee_form\data\responses.xlsx" 2&gt;&amp;1</msg>
+  159  <var>${CLEAN_COMMAND}</var>
+
+  165  <kw name="Run" owner="OperatingSystem">
+  166: <msg time="2025-11-16T09:27:53.152326" level="INFO">Running command '"D:\employee_form\venv\Scripts\python.exe" "D:\employee_form\excel_cleaner.py" "D:\employee_form\data\responses.xlsx" 2&gt;&amp;1'.</msg>
+  167: <msg time="2025-11-16T09:27:53.680278" level="INFO">${CLEANER_RESULT} = Success: File reset completed for D:\employee_form\data\responses.xlsx.</msg>
+  168  <var>${CLEANER_RESULT}</var>
+
+  179  <kw name="Should Contain" owner="BuiltIn">
+  180: <msg time="2025-11-16T09:27:53.680278" level="FAIL">'Success: File reset completed for D:\employee_form\data\responses.xlsx.' does not contain 'error'</msg>
+  181  <arg>${CLEANER_RESULT}</arg>
+
+  184  <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+  185: <status status="FAIL" start="2025-11-16T09:27:53.680278" elapsed="0.000000">'Success: File reset completed for D:\employee_form\data\responses.xlsx.' does not contain 'error'</status>
+  186  </kw>
+
+  217  </test>
+  218: <doc>A collection of atomic tasks for the employee_form automation.
+  219  This robot is designed to be controlled by an external scheduler
+
+report.html:
+  1895  <script type="text/javascript">
+  1896: window.output["strings"] = window.output["strings"].concat(["*","*F Send","*D:\\employee_form\\f_send.robot","*f_send.robot","*<p>A collection of atomic tasks for the employee_form automation. This robot is designed to be controlled by an external scheduler (e.g., smart_runner.py) which handles all timing and logic.\x3c/p>","*Generate And Send Final Report","*<p>Task to process data, send the final report, and reset the file.\x3c/p>"]);
+  1897  </script>
+
+venv\Scripts\activate:
+  40  
+  41: VIRTUAL_ENV="D:\employee_form\venv"
+  42  export VIRTUAL_ENV
+
+venv\Scripts\activate.bat:
+  10  
+  11: set VIRTUAL_ENV=D:\employee_form\venv
+  12  
+
+venv\Scripts\automation.py:
+  1: #!D:\employee_form\venv\Scripts\python.exe
+  2  # -*- coding:utf-8 -*-
+
+venv\Scripts\dumppdf.py:
+  1: #!D:\employee_form\venv\Scripts\python.exe
+  2  """Extract pdf structure in XML format"""
+
+venv\Scripts\pdf2txt.py:
+  1: #!D:\employee_form\venv\Scripts\python.exe
+  2  """A command line tool for extracting text and images from PDF and
+
+venv\Scripts\runxlrd.py:
+  1: #!D:\employee_form\venv\Scripts\python.exe
+  2  # Copyright (c) 2005-2012 Stephen John Machin, Lingfo Pty Ltd
+
+venv\Scripts\vba_extract.py:
+  1: #!D:\employee_form\venv\Scripts\python.exe
+  2  

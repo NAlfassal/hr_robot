@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.10.11 on win32)" generated="2025-11-16T09:27:49.383667" rpa="true" schemaversion="5">
+<suite id="s1" name="F Send" source="D:\employee_form\f_send.robot">
+<test id="s1-t1" name="Generate And Send Final Report" line="41">
+<kw name="Copy Send And Reset Monthly Data">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Starting Data Processing (Clean &amp; Highlight Duplicates)...</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:49.617402" elapsed="0.000000"/>
+</kw>
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2025-11-16T09:27:49.617402" level="INFO">${PROCESS_COMMAND} = "D:\employee_form\venv\Scripts\python.exe" "D:\employee_form
+\report_processor.py" "D:\employee_form
+\data\responses.xlsx" 2&gt;&amp;1</msg>
+<var>${PROCESS_COMMAND}</var>
+<arg>SEPARATOR=</arg>
+<arg>"${PYTHON_EXE}" "${PROCESSOR_SCRIPT}" "${RESPONSES_FILE}" 2&gt;&amp;1</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2025-11-16T09:27:49.617402" elapsed="0.000000"/>
+</kw>
+<kw name="Run" owner="OperatingSystem">
+<msg time="2025-11-16T09:27:49.617402" level="INFO">Running command '"D:\employee_form\venv\Scripts\python.exe" "D:\employee_form\report_processor.py" "D:\employee_form\data\responses.xlsx" 2&gt;&amp;1'.</msg>
+<msg time="2025-11-16T09:27:50.299130" level="INFO">${PROCESSOR_RESULT} = Starting data cleaning and duplicate highlighting...
+No duplicates found.</msg>
+<var>${PROCESSOR_RESULT}</var>
+<arg>${PROCESS_COMMAND}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<status status="PASS" start="2025-11-16T09:27:49.617402" elapsed="0.681728"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Processor Script Output: ${PROCESSOR_RESULT}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.299130" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2025-11-16T09:27:50.300601" level="FAIL">'Starting data cleaning and duplicate highlighting...
+No duplicates found.' does not contain 'error'</msg>
+<arg>${PROCESSOR_RESULT}</arg>
+<arg>ERROR</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="FAIL" start="2025-11-16T09:27:50.300601" elapsed="0.000000">'Starting data cleaning and duplicate highlighting...
+No duplicates found.' does not contain 'error'</status>
+</kw>
+<msg time="2025-11-16T09:27:50.300601" level="INFO">${error_found_in_processor} = False</msg>
+<var>${error_found_in_processor}</var>
+<arg>Should Contain</arg>
+<arg>${PROCESSOR_RESULT}</arg>
+<arg>ERROR</arg>
+<arg>ignore_case=True</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.299130" elapsed="0.002083"/>
+</kw>
+<if>
+<branch type="IF" condition="${error_found_in_processor}">
+<kw name="Fail" owner="BuiltIn">
+<arg>Data Processor Failed: ${PROCESSOR_RESULT}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" start="2025-11-16T09:27:50.301213" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-11-16T09:27:50.301213" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2025-11-16T09:27:50.301213" elapsed="0.000000"/>
+</if>
+<kw name="Get Current Date" owner="DateTime">
+<msg time="2025-11-16T09:27:50.301213" level="INFO">${CURRENT_DATE} = 2025-11-16_092750</msg>
+<var>${CURRENT_DATE}</var>
+<arg>result_format=%Y-%m-%d_%H%M%S</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.301213" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-11-16T09:27:50.301213" level="INFO">${TEMP_FILENAME} = temp_responses_2025-11-16_092750.xlsx</msg>
+<var>${TEMP_FILENAME}</var>
+<arg>temp_responses_${CURRENT_DATE}.xlsx</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.301213" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-11-16T09:27:50.301213" level="INFO">${TEMP_COPY_PATH} = D:\employee_form
+\temp_responses_2025-11-16_092750.xlsx</msg>
+<var>${TEMP_COPY_PATH}</var>
+<arg>D:\\employee_form
+${/}${TEMP_FILENAME}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.301213" elapsed="0.000000"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Creating temporary copy of the PROCESSED file...</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.301213" elapsed="0.000000"/>
+</kw>
+<kw name="Copy File" owner="OperatingSystem">
+<msg time="2025-11-16T09:27:50.301213" level="INFO" html="true">Copied file from '&lt;a href="file://D:\employee_form
+\data\responses.xlsx"&gt;D:\employee_form
+\data\responses.xlsx&lt;/a&gt;' to '&lt;a href="file://D:\employee_form
+\temp_responses_2025-11-16_092750.xlsx"&gt;D:\employee_form
+\temp_responses_2025-11-16_092750.xlsx&lt;/a&gt;'.</msg>
+<arg>${RESPONSES_FILE}</arg>
+<arg>${TEMP_COPY_PATH}</arg>
+<doc>Copies the source file into the destination.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.301213" elapsed="0.000000"/>
+</kw>
+<kw name="Send Report To HR">
+<kw name="Authorize Gmail">
+<kw name="Authorize" owner="RPA.Email.ImapSmtp">
+<msg time="2025-11-16T09:27:51.609624" level="WARN">Server address, account and password are needed for authentication with IMAP</msg>
+<msg time="2025-11-16T09:27:51.609624" level="WARN">Not able to establish IMAP connection</msg>
+<arg>account=${GMAIL_USER}</arg>
+<arg>password=${GMAIL_PASS}</arg>
+<arg>smtp_server=${SMTP_SERVER}</arg>
+<arg>smtp_port=${SMTP_PORT}</arg>
+<doc>Authorize user to SMTP and IMAP servers.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.304930" elapsed="1.304694"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Successfully logged into Gmail ✅</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:51.609624" elapsed="0.000000"/>
+</kw>
+<doc>Authorizes the connection to the Gmail SMTP server.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.304930" elapsed="1.304694"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Sending monthly report to HR...</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:51.619142" elapsed="0.000000"/>
+</kw>
+<kw name="Send Message" owner="RPA.Email.ImapSmtp">
+<msg time="2025-11-16T09:27:51.658451" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
+<arg>sender=${GMAIL_USER}</arg>
+<arg>recipients=${HR_EMAIL}</arg>
+<arg>subject=📊 التقرير الشهري للأنشطة المعرفية</arg>
+<arg>body=مرفق ملف الردود المجمعة والمُعالجة، مع تظليل الصفوف المكررة باللون الأحمر للمراجعة.</arg>
+<arg>attachments=${attachment_path}</arg>
+<doc>Send SMTP email</doc>
+<status status="PASS" start="2025-11-16T09:27:51.619142" elapsed="1.504354"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Report sent successfully to HR.</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:53.123496" elapsed="0.000000"/>
+</kw>
+<arg>${TEMP_COPY_PATH}</arg>
+<doc>Sends the processed Excel file as an attachment to HR.</doc>
+<status status="PASS" start="2025-11-16T09:27:50.304930" elapsed="2.818566"/>
+</kw>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-11-16T09:27:53.123496" level="INFO" html="true">Removed file '&lt;a href="file://D:\employee_form
+\temp_responses_2025-11-16_092750.xlsx"&gt;D:\employee_form
+\temp_responses_2025-11-16_092750.xlsx&lt;/a&gt;'.</msg>
+<arg>${TEMP_COPY_PATH}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-11-16T09:27:53.123496" elapsed="0.000000"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>✅ Temporary copy deleted.</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:53.123496" elapsed="0.015762"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Starting final file reset (clearing content)...</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:53.139916" elapsed="0.000739"/>
+</kw>
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2025-11-16T09:27:53.140655" level="INFO">${CLEAN_COMMAND} = "D:\employee_form
+\venv\Scripts\python.exe" "D:\employee_form
+\excel_cleaner.py" "D:\employee_form
+\data\responses.xlsx" 2&gt;&amp;1</msg>
+<var>${CLEAN_COMMAND}</var>
+<arg>SEPARATOR=</arg>
+<arg>"${PYTHON_EXE}" "${CLEANER_SCRIPT}" "${RESPONSES_FILE}" 2&gt;&amp;1</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2025-11-16T09:27:53.140655" elapsed="0.000000"/>
+</kw>
+<kw name="Run" owner="OperatingSystem">
+<msg time="2025-11-16T09:27:53.152326" level="INFO">Running command '"D:\employee_form
+\venv\Scripts\python.exe" "D:\employee_form
+\excel_cleaner.py" "D:\employee_form
+\data\responses.xlsx" 2&gt;&amp;1'.</msg>
+<msg time="2025-11-16T09:27:53.680278" level="INFO">${CLEANER_RESULT} = Success: File reset completed for D:\employee_form
+\data\responses.xlsx.</msg>
+<var>${CLEANER_RESULT}</var>
+<arg>${CLEAN_COMMAND}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<status status="PASS" start="2025-11-16T09:27:53.140655" elapsed="0.539623"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Cleaner Script Output: ${CLEANER_RESULT}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:53.680278" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2025-11-16T09:27:53.680278" level="FAIL">'Success: File reset completed for D:\employee_form
+\data\responses.xlsx.' does not contain 'error'</msg>
+<arg>${CLEANER_RESULT}</arg>
+<arg>ERROR</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="FAIL" start="2025-11-16T09:27:53.680278" elapsed="0.000000">'Success: File reset completed for D:\employee_form
+\data\responses.xlsx.' does not contain 'error'</status>
+</kw>
+<msg time="2025-11-16T09:27:53.680278" level="INFO">${error_found_in_cleaner} = False</msg>
+<var>${error_found_in_cleaner}</var>
+<arg>Should Contain</arg>
+<arg>${CLEANER_RESULT}</arg>
+<arg>ERROR</arg>
+<arg>ignore_case=True</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-11-16T09:27:53.680278" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${error_found_in_cleaner}">
+<kw name="Fail" owner="BuiltIn">
+<arg>Excel Cleaner Failed: ${CLEANER_RESULT}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" start="2025-11-16T09:27:53.680278" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-11-16T09:27:53.680278" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2025-11-16T09:27:53.680278" elapsed="0.000000"/>
+</if>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>✅ Original responses file reset successfully.</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-11-16T09:27:53.680278" elapsed="0.000000"/>
+</kw>
+<doc>Manages the end-of-month process: process, copy, send, and clean.</doc>
+<status status="PASS" start="2025-11-16T09:27:49.617402" elapsed="4.062876"/>
+</kw>
+<doc>Task to process data, send the final report, and reset the file.</doc>
+<status status="PASS" start="2025-11-16T09:27:49.609735" elapsed="4.070543"/>
+</test>
+<doc>A collection of atomic tasks for the employee_form
+ automation.
+This robot is designed to be controlled by an external scheduler
+(e.g., smart_runner.py) which handles all timing and logic.</doc>
+<status status="PASS" start="2025-11-16T09:27:49.383667" elapsed="4.296611"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="F Send" id="s1" pass="1" fail="0" skip="0">F Send</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-11-16T09:27:51.609624" level="WARN">Server address, account and password are needed for authentication with IMAP</msg>
+<msg time="2025-11-16T09:27:51.609624" level="WARN">Not able to establish IMAP connection</msg>
+<msg time="2025-11-16T09:27:51.658451" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
+</errors>
+</robot>
